@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// images (keep your fixed names)
+// images
 import img1 from "./assets/bolt.jpg";
 import img2 from "./assets/nut.jpg";
 import img3 from "./assets/panel.jpg";
@@ -17,7 +17,7 @@ function App() {
       {/* TOP BAR */}
       <div style={styles.topbar}>RP Industries</div>
 
-      {/* NAV (mobile + desktop) */}
+      {/* NAV */}
       <div style={styles.navbar}>
         <button onClick={() => setPage("home")} style={styles.navBtn}>Home</button>
         <button onClick={() => setPage("products")} style={styles.navBtn}>Products</button>
@@ -32,6 +32,15 @@ function App() {
         {page === "projects" && <Projects />}
         {page === "contact" && <Contact />}
       </div>
+
+      {/* WHATSAPP BUTTON */}
+      <a
+        href="https://wa.me/91XXXXXXXXXX"
+        target="_blank"
+        style={styles.whatsapp}
+      >
+        WhatsApp
+      </a>
 
     </div>
   );
@@ -51,17 +60,26 @@ function Home() {
 }
 
 function Products() {
+  const items = [
+    { img: img1, name: "Industrial Bolts" },
+    { img: img2, name: "Precision Nuts" },
+    { img: img3, name: "Metal Panels" },
+    { img: img4, name: "Custom Part A" },
+    { img: img5, name: "Custom Part B" },
+    { img: img6, name: "Custom Part C" },
+  ];
+
   return (
     <div>
       <h2>Products / Services</h2>
 
       <div style={styles.grid}>
-        <img src={img1} style={styles.image} />
-        <img src={img2} style={styles.image} />
-        <img src={img3} style={styles.image} />
-        <img src={img4} style={styles.image} />
-        <img src={img5} style={styles.image} />
-        <img src={img6} style={styles.image} />
+        {items.map((item, i) => (
+          <div key={i} style={styles.card}>
+            <img src={item.img} style={styles.image} />
+            <p style={styles.productName}>{item.name}</p>
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -87,7 +105,14 @@ function Contact() {
       <p>+91-XXXXXXXXXX</p>
       <p>contact@rpindustries.com</p>
 
-      <img src={img1} style={styles.workshop} />
+      {/* GOOGLE MAP */}
+      <iframe
+        src="https://www.google.com/maps?q=Pune&output=embed"
+        width="100%"
+        height="250"
+        style={{ border: 0, marginTop: "20px", borderRadius: "8px" }}
+        loading="lazy"
+      ></iframe>
     </div>
   );
 }
@@ -125,6 +150,7 @@ const styles = {
     borderRadius: "6px",
     cursor: "pointer",
     fontWeight: "500",
+    transition: "0.2s",
   },
 
   content: {
@@ -137,23 +163,42 @@ const styles = {
 
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(120px, 1fr))",
+    gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
     gap: "15px",
     marginTop: "20px",
+  },
+
+  card: {
+    background: "white",
+    padding: "10px",
+    borderRadius: "8px",
+    textAlign: "center",
+    boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
   },
 
   image: {
     width: "100%",
     height: "120px",
     objectFit: "cover",
-    borderRadius: "8px",
+    borderRadius: "6px",
   },
 
-  workshop: {
-    width: "100%",
-    maxWidth: "400px",
-    marginTop: "20px",
-    borderRadius: "8px",
+  productName: {
+    marginTop: "8px",
+    fontSize: "14px",
+    fontWeight: "500",
+  },
+
+  whatsapp: {
+    position: "fixed",
+    bottom: "20px",
+    right: "20px",
+    background: "#25D366",
+    color: "white",
+    padding: "12px 16px",
+    borderRadius: "50px",
+    textDecoration: "none",
+    fontWeight: "bold",
   },
 };
 
