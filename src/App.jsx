@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-// images
+// images (make sure names match)
 import img1 from "./assets/bolt.jpg";
 import img2 from "./assets/nut.jpg";
 import img3 from "./assets/panel.jpg";
@@ -19,42 +19,59 @@ function App() {
 
       {/* NAV */}
       <div style={styles.navbar}>
-        <button onClick={() => setPage("home")} style={styles.navBtn}>Home</button>
-        <button onClick={() => setPage("products")} style={styles.navBtn}>Products</button>
-        <button onClick={() => setPage("projects")} style={styles.navBtn}>Projects</button>
-        <button onClick={() => setPage("contact")} style={styles.navBtn}>Contact</button>
+        <NavBtn label="Home" active={page==="home"} onClick={()=>setPage("home")} />
+        <NavBtn label="Products" active={page==="products"} onClick={()=>setPage("products")} />
+        <NavBtn label="Projects" active={page==="projects"} onClick={()=>setPage("projects")} />
+        <NavBtn label="Contact" active={page==="contact"} onClick={()=>setPage("contact")} />
       </div>
 
       {/* CONTENT */}
       <div style={styles.content}>
-        {page === "home" && <Home />}
+        {page === "home" && <Home setPage={setPage} />}
         {page === "products" && <Products />}
         {page === "projects" && <Projects />}
         {page === "contact" && <Contact />}
       </div>
 
-      {/* WHATSAPP BUTTON */}
+      {/* WHATSAPP */}
       <a
-        href="https://wa.me/91XXXXXXXXXX"
+        href="https://wa.me/919881242434"
         target="_blank"
         style={styles.whatsapp}
       >
-        WhatsApp
+        Chat
       </a>
 
     </div>
   );
 }
 
+/* ===== COMPONENTS ===== */
+
+function NavBtn({ label, active, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      style={active ? styles.activeBtn : styles.navBtn}
+    >
+      {label}
+    </button>
+  );
+}
+
 /* ===== PAGES ===== */
 
-function Home() {
+function Home({ setPage }) {
   return (
-    <div>
-      <h2>Welcome to RP Industries</h2>
-      <p style={styles.text}>
-        Precision manufacturing of bolts, nuts, panels and custom components.
+    <div style={styles.hero}>
+      <h1 style={styles.heroTitle}>RP Industries</h1>
+      <p style={styles.heroTag}>
+        Precision Engineering. Reliable Manufacturing.
       </p>
+
+      <button style={styles.cta} onClick={() => setPage("contact")}>
+        Get in Touch
+      </button>
     </div>
   );
 }
@@ -90,7 +107,7 @@ function Projects() {
     <div>
       <h2>Projects</h2>
       <p style={styles.text}>
-        Delivered high-quality industrial and automotive components with precision.
+        Delivered high-quality components for industrial and automotive sectors.
       </p>
     </div>
   );
@@ -105,13 +122,11 @@ function Contact() {
       <p>+91-XXXXXXXXXX</p>
       <p>contact@rpindustries.com</p>
 
-      {/* GOOGLE MAP */}
       <iframe
         src="https://www.google.com/maps?q=Pune&output=embed"
         width="100%"
         height="250"
         style={{ border: 0, marginTop: "20px", borderRadius: "8px" }}
-        loading="lazy"
       ></iframe>
     </div>
   );
@@ -121,25 +136,25 @@ function Contact() {
 
 const styles = {
   container: {
-    fontFamily: "Arial, sans-serif",
+    fontFamily: "Segoe UI, sans-serif",
     background: "#f8fafc",
   },
 
   topbar: {
-    background: "#1e3a8a",
+    background: "#0f172a",
     color: "white",
-    padding: "16px",
-    fontSize: "20px",
-    fontWeight: "bold",
+    padding: "18px",
+    fontSize: "22px",
+    fontWeight: "600",
     textAlign: "center",
   },
 
   navbar: {
     display: "flex",
     justifyContent: "center",
-    gap: "10px",
+    gap: "12px",
     flexWrap: "wrap",
-    padding: "10px",
+    padding: "12px",
     background: "#e2e8f0",
   },
 
@@ -147,14 +162,50 @@ const styles = {
     padding: "10px 16px",
     border: "none",
     background: "white",
-    borderRadius: "6px",
+    borderRadius: "8px",
     cursor: "pointer",
     fontWeight: "500",
     transition: "0.2s",
   },
 
+  activeBtn: {
+    padding: "10px 16px",
+    border: "none",
+    background: "#0f172a",
+    color: "white",
+    borderRadius: "8px",
+    cursor: "pointer",
+  },
+
   content: {
-    padding: "20px",
+    padding: "30px",
+    maxWidth: "1000px",
+    margin: "auto",
+  },
+
+  hero: {
+    textAlign: "center",
+    padding: "60px 20px",
+  },
+
+  heroTitle: {
+    fontSize: "40px",
+    marginBottom: "10px",
+  },
+
+  heroTag: {
+    fontSize: "18px",
+    color: "#475569",
+    marginBottom: "20px",
+  },
+
+  cta: {
+    padding: "12px 22px",
+    background: "#0f172a",
+    color: "white",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
   },
 
   text: {
@@ -163,29 +214,29 @@ const styles = {
 
   grid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))",
-    gap: "15px",
+    gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+    gap: "20px",
     marginTop: "20px",
   },
 
   card: {
     background: "white",
-    padding: "10px",
-    borderRadius: "8px",
+    padding: "12px",
+    borderRadius: "10px",
     textAlign: "center",
-    boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+    boxShadow: "0 6px 15px rgba(0,0,0,0.08)",
+    transition: "0.2s",
   },
 
   image: {
     width: "100%",
-    height: "120px",
+    height: "140px",
     objectFit: "cover",
     borderRadius: "6px",
   },
 
   productName: {
-    marginTop: "8px",
-    fontSize: "14px",
+    marginTop: "10px",
     fontWeight: "500",
   },
 
@@ -195,8 +246,8 @@ const styles = {
     right: "20px",
     background: "#25D366",
     color: "white",
-    padding: "12px 16px",
-    borderRadius: "50px",
+    padding: "14px",
+    borderRadius: "50%",
     textDecoration: "none",
     fontWeight: "bold",
   },
