@@ -1,5 +1,13 @@
 import { useState } from "react";
 
+// ✅ IMPORT IMAGES (make sure names match EXACTLY)
+import img1 from "./assets/bolt.jpg";
+import img2 from "./assets/nut.jpg";
+import img3 from "./assets/panel.jpg";
+import img4 from "./assets/part4.jpg";
+import img5 from "./assets/part5.jpg";
+import img6 from "./assets/part6.jpg";
+
 function App() {
   const [page, setPage] = useState("home");
 
@@ -11,7 +19,7 @@ function App() {
         RP Industries
       </div>
 
-      {/* MAIN LAYOUT */}
+      {/* MAIN */}
       <div style={styles.main}>
         
         {/* SIDEBAR */}
@@ -41,9 +49,10 @@ function Home() {
   return (
     <div>
       <h2>Welcome to RP Industries</h2>
+      <hr />
       <p>
         We specialize in manufacturing precision components including bolts,
-        nuts, panels, and custom mechanical parts for industrial applications.
+        nuts, panels, and custom mechanical parts.
       </p>
     </div>
   );
@@ -55,12 +64,12 @@ function Products() {
       <h2>Products / Services</h2>
 
       <div style={styles.grid}>
-        <img src={img1} />
-        <img src={img2} />
-        <img src={img3} />    
-        <img src={img4} />
-        <img src={img5} />
-        <img src={img6} />
+        <img src={img1} alt="Bolt" style={styles.image} />
+        <img src={img2} alt="Nut" style={styles.image} />
+        <img src={img3} alt="Panel" style={styles.image} />
+        <img src={img4} alt="Part 4" style={styles.image} />
+        <img src={img5} alt="Part 5" style={styles.image} />
+        <img src={img6} alt="Part 6" style={styles.image} />
       </div>
     </div>
   );
@@ -71,8 +80,7 @@ function Projects() {
     <div>
       <h2>Projects</h2>
       <p>
-        Successfully delivered precision components for automotive and industrial
-        applications with high quality standards.
+        Delivered high-quality components for automotive and industrial clients.
       </p>
     </div>
   );
@@ -83,14 +91,14 @@ function Contact() {
     <div>
       <h2>Contact Us</h2>
       <p>RP Industries</p>
-      <p>Location: (Add address here)</p>
-      <p>Phone: (Add phone number)</p>
-      <p>Email: (Add email)</p>
+      <p>Location: Pune, India</p>
+      <p>Phone: +91-XXXXXXXXXX</p>
+      <p>Email: contact@rpindustries.com</p>
 
       <img
-        src="https://via.placeholder.com/300x200"
+        src={img1}
         alt="Workshop"
-        style={{ marginTop: "20px" }}
+        style={{ marginTop: "20px", width: "300px" }}
       />
     </div>
   );
@@ -104,7 +112,7 @@ const styles = {
   },
 
   topbar: {
-    background: "#2563eb",
+    background: "#1e40af",
     color: "white",
     padding: "16px",
     fontSize: "22px",
@@ -143,6 +151,13 @@ const styles = {
     gridTemplateColumns: "repeat(3, 1fr)",
     gap: "15px",
     marginTop: "20px",
+  },
+
+  image: {
+    width: "100%",
+    height: "150px",
+    objectFit: "cover",
+    borderRadius: "8px",
   },
 };
 
