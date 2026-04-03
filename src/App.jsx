@@ -35,7 +35,7 @@ function App() {
 
       {/* WHATSAPP */}
       <a
-        href="https://wa.me/919881242434"
+        href="https://wa.me/917276764963"
         target="_blank"
         style={styles.whatsapp}
       >
